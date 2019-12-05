@@ -45,6 +45,9 @@ namespace GuidGenerator
             _notifyIcon.ShowBalloonTip(1000);
         }
 
+
+        public ToolStripMenuItem UppcaseItem;
+
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources
         /// </summary>
@@ -60,23 +63,29 @@ namespace GuidGenerator
 	    {
             // Add the default menu options.
             ContextMenuStrip menu = new ContextMenuStrip();
-            ToolStripMenuItem item;
 
-            // Open.
-            item = new ToolStripMenuItem();
-            item.Text = "New Guid (Alt+g)";
-            item.Click += (sender, args) => Implementation.GenerateGuid();
+            // Generate Guid
+            var generateItem = new ToolStripMenuItem();
+            generateItem.Text = "New Guid (Alt+g)";
+            generateItem.Click += (sender, args) => Implementation.GenerateGuid();
             //item.Image = Resources.Explorer;
-            menu.Items.Add(item);
+            menu.Items.Add(generateItem);
+
+            //Uppcase
+            UppcaseItem = new ToolStripMenuItem();
+            UppcaseItem.Text = "Uppercase";
+            UppcaseItem.Click += (sender, args) => Implementation.OnUppercaseItemClicked();
+            UppcaseItem.Checked = false;
+            menu.Items.Add(UppcaseItem);
 
             // Separator.
             menu.Items.Add(new ToolStripSeparator());
 
             // Exit.
-            item = new ToolStripMenuItem();
-            item.Text = "Exit";
-	        item.Click += (sender, args) => Program.Exit();
-            menu.Items.Add(item);
+            var exitItem = new ToolStripMenuItem();
+            exitItem.Text = "Exit";
+            exitItem.Click += (sender, args) => Program.Exit();
+            menu.Items.Add(exitItem);
 
             return menu;
         }

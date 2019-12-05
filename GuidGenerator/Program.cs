@@ -32,6 +32,7 @@ namespace GuidGenerator
             ProcessIcon.Display();
 
             ProcessIcon.ShowNotification("Use Alt+g to generate guid");
+            Implementation.Init();
 
             Application.Run();
         }
